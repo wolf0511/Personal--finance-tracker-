@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Finance Tracker</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        h1 { text-align: center; font-size: 1.8em; margin-bottom: 20px; }
+        .container { max-width: 1000px; margin: 0 auto; }
+        .form-section { margin-bottom: 20px; }
+        label { font-weight: bold; font-size: 1em; }
+        input, button { padding: 10px; margin: 5px 0; width: 100%; font-size: 1em; }
+        button { background-color: #4CAF50; color: white; border: none; cursor: pointer; }
+        button:hover { background-color: #45a049; }
+        
+        /* Charts and layout for mobile */
+        .charts { display: flex; flex-wrap: wrap; gap: 20px; justify-content: space-between; }
+        .chart { width: 100%; max-width: 45%; }
+        .form-section h3 { font-size: 1.2em; margin-bottom: 10px; }
+        .form-section p { font-size: 1.1em; margin-top: 5px; }
+
+        /* Responsive design for smaller screens */
+        @media screen and (max-width: 768px) {
+            .charts { flex-direction: column; align-items: center; }
+            .chart { width: 100%; max-width: 90%; margin-bottom: 20px; }
+            h1 { font-size: 1.5em; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Personal Finance Tracker</h1>
+
+        <!-- Form to input monthly data -->
+        <div class="form-section">
+            <h3>Enter Financial Data for the Month</h3>
+            <label for="salary">Salary:</label>
+            <input type="number" id="salary" placeholder="Salary" />
+
+            <label for="other-income">Other Income:</label>
+            <input type="number" id="other-income" placeholder="Other Income" />
+
+            <label for="fuel-cost">Fuel Cost:</label>
+            <input type="number" id="fuel-cost" placeholder="Fuel Cost" />
+
+            <label for="shopping">Shopping:</label>
+            <input type="number" id="shopping" placeholder="Shopping" />
+
+            <label for="house-rent">House Rent:</label>
+            <input type="number" id="house-rent" placeholder="House Rent" />
+
+            <label for="other-costs">Other Costs:</label>
+            <input type="number" id="other-costs" placeholder="Other Costs" />
+
+            <label for="401k">401k Investment:</label>
+            <input type="number" id="401k" placeholder="401k Investment" />
+
+            <label for="stock-investments">Stock Investments:</label>
+            <input type="number" id="stock-investments" placeholder="Stock Investments" />
+
+            <label for="hsa">HSA (Health Savings Account):</label>
+            <input type="number" id="hsa" placeholder="HSA Investment" />
+
+            <label for="extra-savings">Extra Savings:</label>
+            <input type="number" id="extra-savings" placeholder="Extra Savings" />
+
+            <button onclick="saveData()">Save Data</button>
+        </div>
+
+        <!-- Section to display monthly summary -->
+        <div class="form-section">
+            <h3>Summary for Selected Month</h3>
+            <p>Net Balance: <span id="net-balance"></span></p>
+        </div>
+
+        <!-- Charts Section -->
+        <div class="charts">
+            <div class="chart">
+                <h3>Income vs Expenses vs Net Balance</h3>
+                <canvas id="income-expense-chart"></canvas>
+            </div>
+            <div class="chart">
+                <h3>Expense Breakdown</h3>
+                <canvas id="expense-breakdown-chart"></canvas>
+            </div>
+        </div>
+
+        <div class="form-section">
+            <h3>Investment & Savings Over Time</h3>
+            <canvas id="investment-tracking-chart"></canvas>
+        </div>
+
+        <!-- CSV Export Button -->
+        <button onclick="exportData()">Export Data to CSV</button>
+    </div>
+
+    <script src="finance-tracker.js"></script>
+</body>
+</html>
